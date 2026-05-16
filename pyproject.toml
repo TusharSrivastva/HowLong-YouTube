@@ -1,0 +1,39 @@
+[project]
+name = "howlong-youtube"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "python-dotenv>=1.2.2",
+    "requests>=2.34.2",
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=2.1.0",
+    "ruff>=0.15.13",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+fix = true
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "I",   # import sorting (this is what you were missing)
+    "B",   # bugbear (common bugs / bad patterns)
+]
+
+ignore = [
+    # add exceptions here if needed later
+]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+
+[project.scripts]
+howlong = "howlong.main:main"
