@@ -185,3 +185,4 @@ At speeds:
 
 * Integrate Rich Text
 * Customizable cache size
+* Integrate tqdm
