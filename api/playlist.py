@@ -10,11 +10,12 @@ MAX_RESULTS = 50
 async def get_video_ids(
     playlist_id: str,
     api_key: str,
-    queue: asyncio.Queue[list[str] | None],
+    queue: asyncio.Queue[list[tuple[int, str]] | None],
     client: AsyncClient,
 ) -> None:
     page_token: str | None = None
     iterations: int = 0
+    video_index_global: int = 0
 
     while iterations < MAX_ITERATIONS:
         iterations += 1
@@ -39,9 +40,12 @@ async def get_video_ids(
 
         data = response.json()
 
-        video_ids: list[str] = [
-            item["contentDetails"]["videoId"] for item in data["items"]
+        video_ids: list[tuple[int, str]] = [
+            (video_index_global + idx, item["contentDetails"]["videoId"])
+            for idx, item in enumerate(data["items"])
         ]
+
+        video_index_global += len(data["items"])
 
         await queue.put(video_ids)
 
