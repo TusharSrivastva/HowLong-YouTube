@@ -1,4 +1,4 @@
-from utils import build_durations_list, compute_speeds
+from src.howlong.utils import build_durations_list, compute_speeds
 
 
 def compute(
