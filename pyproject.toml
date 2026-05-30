@@ -36,5 +36,9 @@ ignore = [
 [tool.ruff.lint.isort]
 combine-as-imports = true
 
+[tool.mypy]
+mypy_path = "src"
+explicit_package_bases = true
+
 [project.scripts]
 howlong = "howlong.main:main"

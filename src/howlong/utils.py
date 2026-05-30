@@ -15,6 +15,13 @@ def parse_duration(duration: str) -> int:
     return hours * 3600 + minutes * 60 + seconds
 
 
+def format_duration(seconds: int) -> str:
+    hours: int = seconds // 3600
+    minutes: int = (seconds % 3600) // 60
+
+    return f"{hours}:{minutes:02d}"
+
+
 def build_durations_list(video_durations: dict[str, tuple[int, str]]) -> list[int]:
     duration_list = [0] * (len(video_durations) + 1)
 
